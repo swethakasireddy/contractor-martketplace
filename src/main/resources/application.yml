@@ -1,0 +1,45 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: development
+  # Security configuration
+  security:
+    user:
+      name: user
+      password: user
+  # Database
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # For correct works with docker-compose, we need to change "localhost" to a service name, take from docker-compose.yml
+    url: jdbc:mysql://localhost:3306/marketplace
+    username: root
+    password: sushanth
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: update # When you launch the application for the first time - switch "update" at "create"
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    open-in-view: false
+    generate-ddl: true
+   # Database
+  
+# Logger configuration
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    org.springframework: info
+    org.hibernate: debug
+# Server configuration
+server:
+  port: 8080 #set your port
+  servlet:
+    context-path: /marketplace
+# Swagger configuration
+springdoc:
+  swagger-ui:
+    path: /ui # swagger-ui custom path
+  api-docs:
+    path: /docs
